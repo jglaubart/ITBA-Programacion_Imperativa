@@ -1,0 +1,8 @@
+{
+    "cmake.configureOnOpen": false,
+    "files.associations": {
+        "stdio.h": "c",
+        "getnum.h": "c",
+        "algorithm": "c"
+    }
+}
