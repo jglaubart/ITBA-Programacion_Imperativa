@@ -29,7 +29,7 @@ void secuenciaAsc ( int vector[],  int dim, int * comienzo, int * longmax ){
 }
 int
 main(void){
-    int vec[] = {5, 6, 2, 3, 4, 3, 5, 7, 10, 90, 111};
+    int vec[] = {1, 2, 3, 4, 5, 7, 10, 90, 111};
     int dim = sizeof(vec)/sizeof(vec[0]);
     int comienzo, longitud;
     secuenciaAsc(vec, dim, &comienzo, &longitud);
