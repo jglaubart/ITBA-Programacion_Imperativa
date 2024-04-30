@@ -66,7 +66,6 @@ void decodificar(char *codigo, char mezcla[], char *destino){
     return;
 }
 
-
 int main(void) {
   char msg[MAX];
   char dest[MAX];
@@ -87,6 +86,6 @@ int main(void) {
   decodificar(msg, alpha, dest);
   assert(strcmp(dest, s) == 0);
   
-  puts("OK");
+  puts("OK!");
   return 0;
 }
