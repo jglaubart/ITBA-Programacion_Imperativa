@@ -20,36 +20,35 @@ Así se va guiando al jugador hasta que adivine el número.
 #include <math.h>
 #include "getnum.h"
 #include "bibliorandom.h"
-#define X 5
 #define TRUE 1
 #define FALSE !TRUE
 
-int cantidadBien(int numUSR[], int numReal[]){
+int cantidadBien(int numUSR[], int numReal[], int largo){
     int bien=0;
-    for(int i=0; i<X; i++){
+    for(int i=0; i<largo; i++){
         if(numUSR[i]==numReal[i]){bien++;};
     }
     return bien;
 }
 
-int cantidadRegular(int numUSR[], int numReal[]){
+int cantidadRegular(int numUSR[], int numReal[], int largo){
     int regular=0;
-    for(int i=0; i<X; i++){
-        for(int j=0; j<X; j++){
+    for(int i=0; i<largo; i++){
+        for(int j=0; j<largo; j++){
             if (numUSR[i]==numReal[j] && i!=j) {regular++;};
         }
     }
     return regular;
 }
 
-int coincideNumero(int numUSR[], int numReal[]){
-    int bien = cantidadBien(numUSR, numReal);
-    int regular = cantidadRegular(numUSR, numReal);
+int coincideNumero(int numUSR[], int numReal[], int largo){
+    int bien = cantidadBien(numUSR, numReal, largo);
+    int regular = cantidadRegular(numUSR, numReal, largo);
     printf("Hay %d digitos bien ubicados y %d regular.\n", bien, regular);
-    return (bien == X);
+    return (bien == largo);
 }
 
-void leerNumero(int numero[], int intentos){     //FUNCIONA!!
+void leerNumero(int numero[], int intentos, int largo){     //FUNCIONA!!
     puts(""); //solo para estilo
     printf("Le quedan %d oportunidades.\n", intentos);
     
@@ -57,17 +56,22 @@ void leerNumero(int numero[], int intentos){     //FUNCIONA!!
     int numvalido = FALSE;
     while(numvalido!=2){
         numvalido = FALSE;
-        num = getint("Ingrese un numero de %d digitos diferentes entre 1 y 9: ", X);
-        int numMin=pow(10, X-1);
+        num = getint("Ingrese un numero de %d digitos diferentes entre 1 y 9: ", largo);
+
+        int numMin=1;
+        for(int i=0; i<largo-1; i++){
+            numMin*=10;
+        }
+
         if(num<numMin*10 && num>=numMin ) {numvalido++;} //suma si tiene X cifras
 
-        for(int i = X-1; i>=0 && numvalido; i--, num/=10){  // paso el numero a vector (ya ni entra si es menor a X digitos)
+        for(int i = largo-1; i>=0 && numvalido; i--, num/=10){  // paso el numero a vector (ya ni entra si es menor a X digitos)
                 numero[i] = num%10;
             }
 
         char cumple=1; //compruebo que este bien
-        for(int i=0; cumple && numvalido && i<X; i++){     // i avanza de a 1 y j se fija en todos los siguientes (ya ni entra si es menor a X digitos)
-            for(int j=i+1; j<X; j++){
+        for(int i=0; cumple && numvalido && i<largo; i++){     // i avanza de a 1 y j se fija en todos los siguientes (ya ni entra si es menor a X digitos)
+            for(int j=i+1; j<largo; j++){
                 if (numero[i] == numero[j] || numero[i]==0 || numero[j]==0) {cumple = FALSE;}
             }
         } 
@@ -81,10 +85,10 @@ void borrarNum(int numeros[], int lugar, int * dim){ // FUNCIONA!!
     (*dim)--;
 }
 
-void GeneraAleatorio(int conjunto[]){    //crea el numero random, FUNCIONA
+void GeneraAleatorio(int conjunto[], int largo){    //crea el numero random, FUNCIONA
     int dimPosibles = 9;
     int posiblesNum[] = {1,2,3,4,5,6,7,8,9};
-    for (int i = 0; i < X; i++){
+    for (int i = 0; i < largo; i++){
         randomize();
         int random = randInt(0,dimPosibles-1);   //elije una posicion del vector de numeros
         conjunto[i] = posiblesNum[random];
@@ -103,23 +107,27 @@ int elegirNivel(){  //FUNCIONA!!
 }
 
 int main(){
-    int numReal[X];
-    GeneraAleatorio(numReal);  //funcion que crea el numero random a adivinar
+    int largo=10;
+    while(largo>9 || largo<1){
+        largo = getint("Ingrese el largo del numero a adivinar, hasta 9 digitos: ");
+    }
+    int numReal[largo];
+    GeneraAleatorio(numReal, largo);  //funcion que crea el numero random a adivinar
     
     /* puts("Para poder comprobarlo, el numero real es: "); //PARA COMPROBAR
-    for(int i=0; i<X; i++){
+    for(int i=0; i<largo; i++){
         printf("%d", numReal[i]);
     }puts(""); */
 
     int maxintentos = elegirNivel();
 
     char adivino = FALSE;
-    int numUSR[X];
+    int numUSR[largo];
     while (!adivino && maxintentos){
-        int numUSR[X];
-        leerNumero(numUSR, maxintentos);   //funcion que lee el numero
+        int numUSR[largo];
+        leerNumero(numUSR, maxintentos, largo);   //funcion que lee el numero
 
-        adivino = coincideNumero(numUSR, numReal);
+        adivino = coincideNumero(numUSR, numReal, largo);
         
         if(adivino){
             printf("Felicidades, has ganado!\n");
@@ -127,5 +135,9 @@ int main(){
 
         maxintentos--;
     }
-    if(!adivino){ printf("Se acabaron los intentos, has perdido. Juega otra vez!\n");} //no adivino, salio porque intentos llego a 0
+    if(!adivino){ printf("Se acabaron los intentos, has perdido. El numero era el ");} //no adivino, salio porque intentos llego a 0
+    for(int i=0; i<largo; i++){
+        printf("%d", numReal[i]);
+    }puts(".\nJuega otra vez!");
+
 }
