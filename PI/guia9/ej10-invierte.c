@@ -2,6 +2,12 @@
 #include <assert.h>
 #include <string.h>
 
+void invierte(const char *s, char rta[]);
+
+#include <stdio.h>
+#include <assert.h>
+#include <string.h>
+
 int main(void) {
 
   char s[20] = {0};
@@ -27,4 +33,16 @@ int main(void) {
 
   printf ("OK!\n");
   return 0;
+}
+
+void invierte(const char *s, char rta[]){
+    if(*s == 0){
+        *rta = 0;
+        return;
+    }
+    invierte (s+1, rta); //llego hasta el final de s
+    while(*rta!=0){
+        rta++;     //avanzo hasta el final de rta
+    }
+    *rta++ = *s;
 }
