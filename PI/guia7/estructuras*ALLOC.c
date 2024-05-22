@@ -4,14 +4,14 @@
 
 void mostrarArreglo(int *arr, int TAM){
     for (int i=0; i<TAM; i++){
-        printf("%d ",arr[i]);q
+        printf("%d ",arr[i]);
     }
 }
 
 int main(){
 // los tres codigos iguales
 
-    int *arr1, *arr2, *arr3
+    int *arr1, *arr2, *arr3;
     int TAM = 10;
 
     // primero MALLOC
