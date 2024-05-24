@@ -4,7 +4,7 @@
 #define UNTITLED5_LISTADT_H
 
 typedef struct listCDT * listADT;
-typedef char* tipoDato;
+typedef int tipoDato;
 
 //funcion para poder comparardos elementos
 //retorna
@@ -13,24 +13,24 @@ typedef char* tipoDato;
     //positivo si e1 es mayor a e2 (esta despues)
 typedef int (*compare) (tipoDato e1, tipoDato e2);
 
-listADT newList(int (*cmp) (tipoDato, tipoDato));
+listADT newList(compare);
 
-void freeList(listADT list);
+void freeList(listADT);
 
-int isEmpty(const listADT list);
+int isEmpty(const listADT);
 
-int belongsList(const listADT list, tipoDato elem);
+int belongsList(const listADT, tipoDato);
 
 //retorna y si lo agrego y 0 si ya estaba
-int insertList(listADT list, tipoDato elem, compare cmp);
+int insertList(listADT, tipoDato);
 
-int deleteList(listADT list, tipoDato elem, compare);
+int deleteList(listADT, tipoDato);
 
-int sizeList(const listADT list);
+int sizeList(const listADT);
 
-tipoDato elementAtIndex(const listADT list, size_t i);
+tipoDato elementAtIndex(const listADT, size_t);
 
 //cambia todos los elementos de lalista segun la funcion pasada
-void mapLista(listADT list, tipoDato (*map) (tipoDato elem));    //La funcion que pase el usuario debera ser compatible con el tipo de dato usado, un int se puede duplicar, pero un char no.
+void mapList(listADT, tipoDato (*) (tipoDato));    //La funcion que pase el usuario debera ser compatible con el tipo de dato usado, un int se puede duplicar, pero un char no.
 
 #endif
