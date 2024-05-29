@@ -12,11 +12,14 @@ struct listCDT{
     List first;
     size_t size;
     compare cmp;
+    List current;
 };
 //FUNCIONES
 
 listADT newList(compare cmp){
-    listADT aux = calloc(1,sizeof(struct listCDT));
+    listADT aux = malloc(sizeof(struct listCDT));
+    aux->first = NULL;
+    aux->size = 0;
     aux->cmp = cmp;
     return aux;
 }
@@ -103,6 +106,23 @@ int deleteList(listADT list, tipoDato elem){
 
 int sizeList(const listADT list){
     return list->size;
+}
+
+//para recorrer toda la lista!!
+int hasNext(listADT list){
+    return list->current != NULL;
+}
+
+tipoDato next(listADT list){
+    if (!hasNext(list)) {exit (1);}
+    tipoDato rta = list->current->head;
+    list->current = list->current->tail;
+    return rta;
+}
+
+void toBegin(listADT list){
+    list->current = list->first;
+    return;
 }
 
 tipoDato elementAtIndex(const listADT list, size_t i){

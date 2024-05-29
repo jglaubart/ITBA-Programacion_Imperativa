@@ -37,20 +37,15 @@ void freeVector(vectorADT v);
 */
 int put(vectorADT v, elemType * elems, size_t dim, size_t index);
 
-
-
-
 /* Retorna el índice en el cual está insertado el elemento, o -1 si no lo encuentra */
 int getIdx(vectorADT v, elemType elem);
-
-
 
 
 /* Elimina el elemento en la posición index. Si index está fuera del vector no hace nada */
 void deleteElement(vectorADT v, size_t index);
 
 
-
-
 /* Retorna cuántos elementos hay insertados en el vector */
 int elementCount(vectorADT v);
+
+int isOccupied(vectorADT vec, size_t idx);

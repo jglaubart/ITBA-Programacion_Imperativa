@@ -36,8 +36,7 @@ int main(void) {
 }
 
 TList sortedList(TList list){
-    if(list==NULL){return NULL;}
-    if(list->tail == NULL){return list;}
+    if(list==NULL || list->tail == NULL){return list;}
     list->tail = sortedList(list->tail);
     if(list->elem >= list->tail->elem){
         TList devolver = list->tail;

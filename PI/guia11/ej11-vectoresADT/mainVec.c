@@ -31,8 +31,7 @@ int main(void) {
     assert(elementCount(v)==10);
     deleteElement(v, 100);
     assert(elementCount(v)==10);
-
-    deleteElement(v, 0);        //FALLA!!!!!!!!
+    deleteElement(v, 0);
     assert( getIdx(v, 1) == 3);
     assert(elementCount(v)==9);
     // Volvemos a borrar el 0, no deberia decrementar la cantidad

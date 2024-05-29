@@ -1,28 +1,45 @@
 #include "listaADT.h"
 #include <stdio.h>
-#include <strings.h>
+#include <ctype.h>
+#include <string.h>
 #include <assert.h>
 
-//si la lista fuera de enteros ordenados de forma descendente
+
+//comparacion para enteros
+int comp(int n1, int n2){
+    return n1-n2;
+}
+//map para enteros
 int doble(int n){
     return 2*n;
 }
 
-int comp(int n1, int n2){
-    return n1-n2;
+//map para char*, habria que modificar el programa ya que esta retorna void
+void aMayus(char * c){
+    int largo = strlen(c);
+    for(int i=0; i<largo; i++){
+        c[i] = toupper(c[i]);
+    }
+}
+
+void printList(listADT list){
+    toBegin(list);     //regreso al primero
+    while(hasNext(list)){
+        printf("%d\t", next(list));
+    }
 }
 
 int main(void) {
-    listADT myList = newList((int (*)(int, int))comp);
+    listADT myList = newList((int (*)(tipoDato, tipoDato))doble);
     insertList(myList, 3);
     insertList(myList, 4);
     insertList(myList, 2);
+    printList(myList);
+
     mapList(myList, doble);
-    int size_list = sizeList(myList);
-    for ( int i = 0; i < size_list; i++ ) {
-        printf("%d\t", elementAtIndex(myList, i));
-    }
+    printList(myList);
+
     freeList(myList);
-    puts("OK!");
+    puts("\nOK!");
     return 0;
 }

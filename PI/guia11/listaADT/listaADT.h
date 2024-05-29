@@ -1,5 +1,4 @@
 //TAD para listas genericas y ordnadas
-#include <stdlib.h>
 #ifndef UNTITLED5_LISTADT_H      // por si se incluye dos veces
 #define UNTITLED5_LISTADT_H
 
@@ -27,6 +26,14 @@ int insertList(listADT, tipoDato);
 int deleteList(listADT, tipoDato);
 
 int sizeList(const listADT);
+
+//Para recorrer toda la lista o ver los ultimos elementos llamados (hasta funcion next)
+void toBegin(listADT list);   //el usuario avisa que va a correr la lista, inicializa el campo current
+
+int hasNext(listADT list);  //retorna 1 si hay un siguiente y 0 si no lo hay. Si no hay y se llama a next, aborta
+
+tipoDato next(listADT list);  //devuelve al usuario el siguiente, la primera luego de toBegin retorna el prmer elemento
+//
 
 tipoDato elementAtIndex(const listADT, size_t);
 
