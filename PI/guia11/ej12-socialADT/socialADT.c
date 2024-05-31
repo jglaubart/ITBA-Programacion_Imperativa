@@ -57,6 +57,13 @@ static TPeople addRec(TPeople actual, const elemType newName, int* flag){
     return actual;
 }
 
+void addPerson(socialADT soc, const elemType name){ //FALTA PROGRAMACION DEFENSIVA POR SI INGRESAN UN NOMBRE DE MAS DE 20 CHARS
+    int flag = 0;
+    soc->firstP = addRec(soc->firstP, name, &flag);
+    soc->cantPeople += flag;
+    return;
+}
+
 static void freeRelatedList (TPeopleRel list) {
     while ( list != NULL ) {
         TPeopleRel aux = list;
@@ -81,12 +88,6 @@ socialADT newSocial(){
     return calloc(1, sizeof(socialCDT));
 }
 
-void addPerson(socialADT soc, const elemType name){      //HACER EN ORDEN
-    int flag = 0;
-    soc->firstP = addRec(soc->firstP, name, &flag);
-    soc->cantPeople += flag;
-    return;
-}
 
 int socSize(socialADT soc){
     return soc->cantPeople;
@@ -118,7 +119,7 @@ static void findPerson(TPeople actual, const elemType name, const elemType newRe
     actual->cantRel += flag;
     return;   
 }
-void addRelated(socialADT soc, const elemType name, const elemType related){
+void addRelated(socialADT soc, const elemType name, const elemType related){    //FALTA PROGRAMACION DEFENSIVA POR SI INGRESAN UN NOMBRE DE MAS DE 20 CHARS
     findPerson(soc->firstP, name, related);
     return;
 }
