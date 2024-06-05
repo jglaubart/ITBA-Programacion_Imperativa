@@ -15,7 +15,6 @@ struct stackCDT{        //puntero al primer nodo de la lista
     struct node *list;
     unsigned int dim;
     FnEquals equals;
-
 };
 
 stackADT newStack(FnEquals sonIguales){ 

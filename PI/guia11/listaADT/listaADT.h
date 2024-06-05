@@ -1,6 +1,7 @@
 //TAD para listas genericas y ordnadas
 #ifndef UNTITLED5_LISTADT_H      // por si se incluye dos veces
 #define UNTITLED5_LISTADT_H
+#include <stdlib.h>
 
 typedef struct listCDT * listADT;
 typedef int tipoDato;

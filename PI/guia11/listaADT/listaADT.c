@@ -63,7 +63,7 @@ int belongsList(const listADT list, tipoDato elem){
 }
 
 static List insertRec(List list, tipoDato elem, compare cmp, int *flag){
-    int compare;;
+    int compare;
     if(list==NULL || (compare=cmp(list->head, elem)) > 0){
         List aux = malloc(sizeof(node));
         aux->head = elem;
@@ -100,7 +100,7 @@ static List deleteRec(node* list, tipoDato elem, compare cmp, int* flag) {
 }
 int deleteList(listADT list, tipoDato elem){
     int flag = 0;
-    deleteRec(list->first, elem, list->cmp, &flag);
+    list->first = (list->first, elem, list->cmp, &flag);
     return flag;
 }
 
