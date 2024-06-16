@@ -104,7 +104,7 @@ char * takeOff(airportADT airportAdt, size_t runwayId){
     }
     airportAdt->runways[id].first = delete->tail;
     //libero el eliminado
-    if(delete->matricula != NULL) { free(delete->matricula); }
+    if(delete->matricula != NULL) {free(delete->matricula);}
     free(delete);
     
     airportAdt->runways[id].count --;

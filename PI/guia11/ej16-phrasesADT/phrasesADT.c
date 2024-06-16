@@ -26,7 +26,7 @@ phrasesADT newPhrasesADT(size_t keyFrom, size_t keyTo){
     new->from = keyFrom;
     new->to = keyTo;
     new->size = 0;
-    new->elems = calloc(keyTo - keyFrom + 1, sizeof(TElem));
+    new->elems = calloc(keyTo - keyFrom + 1, sizeof(TElem));   //ya desde un principio creo el vector con todos los espacios, no lo agrando despues
     return new;
 }
 

@@ -4,12 +4,12 @@
 
 typedef struct row{
     size_t * squirrels;    //cantidad de ardillas por bloque (bloque es el lugar (row,col) de la matriz)
-    size_t cols;           // cantidad de columnas reservadas dentro de la fila
+    size_t cols;           // cantidad de bloques reservados dentro de la columna de la fila
 }TRow;
 
 struct squirrelCensusCDT{
     size_t sizeBlock;      // si es 100, hay hasta el bloque (100,100)
-    TRow * rows;           // cada fila tendra adentro columnas
+    TRow * rows;           // cada fila tendra adentro bloques que forman una columna
     size_t dimRows;        //cantidad de filas reservadas
 };
 

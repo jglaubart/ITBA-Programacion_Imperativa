@@ -17,7 +17,8 @@ typedef struct rankingCDT{
     compare cmp;
 }rankingCDT;
 
-//como todos los elementos arrancan con "0 puntos", cada vez que se ingrese a unova a subir de rango, no es necesario un contador por cada elemento
+//como todos los elementos arrancan con "0 puntos"
+//cada vez que se ingrese a unova a subir de rango, no es necesario un contador por cada elemento
 
 rankingADT newRanking(elemType elems[], size_t dim, compare cmp){
     rankingADT new = malloc(sizeof(rankingCDT));
