@@ -1,6 +1,8 @@
 {
     "files.associations": {
         "vector": "c",
-        "mainlandmark": "c"
+        "mainlandmark": "c",
+        "string": "c",
+        "assert.h": "c"
     }
 }
