@@ -3,6 +3,7 @@
         "vector": "c",
         "mainlandmark": "c",
         "string": "c",
-        "assert.h": "c"
+        "assert.h": "c",
+        "ctype.h": "c"
     }
 }

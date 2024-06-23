@@ -65,41 +65,37 @@ puts("OK!");
 return 0;
 }
 
-
 static int dirs[DIRS][2] = {{1,0}, {1,1}, {0,1}, {-1,1}, {-1,0}, {-1,-1}, {0,-1}, {1,-1}};
 
-int amenaza(int dim, char board[][dim], int fil, int col, int dfil, int dcol){ //retorna 1 si no hay ninguna que se amenaza en cada direccion
-    fil+=dfil;
-    col+=dcol;
+int amenaza(int dim, char board[][dim], int fil, int col, int dfil, int dcol){
     int flag = 1;
-    while(flag && fil<dim && col<dim && fil>=0 && col>=0){
-        if(board[fil][col] == '1'){flag = 0;}
-        fil+=dfil;
-        col+=dcol;
+    while(fil >= 0 && col >= 0 && fil<dim && col<dim){
+        flag = !(board[fil][col] == '1');
+        fil += dfil;
+        col += dcol;
     }
     return flag;
 }
 
-int direcciones (int dim, char board[][dim], int fil, int col){  //retorna 1 si no hay ninguna que se amenaza en ninguna direccion
-    int flag = 1;
-    for(int d=0; d < DIRS && flag; d++){
-        int dfil = dirs[d][0];
-        int dcol = dirs[d][1];
-        flag = amenaza(dim, board, fil, col, dfil, dcol);
+int direcciones(int dim, char board[][dim], int i, int j){
+    int flag=1;
+    for(int dir=0; flag && dir<DIRS; dir++){
+        int dfil = dirs[dir][0];
+        int dcol = dirs[dir][1];
+        flag = amenaza(dim, board, i+dfil, j+dcol, dfil, dcol);
     }
     return flag;
 }
+
 int nQueens(int dim, char board[][dim]){
-    int flag=1;   //flag es 1 si no se amenazan
-    int reinas=0;
-    for(int i=0; i<dim && flag; i++){
-        for(int j=0; j<dim && flag; j++){
+    int flag=1, reinas=0;;
+    for(int i=0; flag && i<dim; i++){
+        for(int j=0; flag && j<dim; j++){
             if(board[i][j] == '1'){
                 flag = direcciones(dim, board, i, j);
                 reinas++;
             }
         }
     }
-    if(reinas != dim){flag=0;}
-    return flag;
+    return flag && reinas == dim;
 }
