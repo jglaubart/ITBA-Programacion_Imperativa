@@ -114,6 +114,7 @@ int main(){
     int numReal[largo];
     GeneraAleatorio(numReal, largo);  //funcion que crea el numero random a adivinar
     
+    
     /* puts("Para poder comprobarlo, el numero real es: "); //PARA COMPROBAR
     for(int i=0; i<largo; i++){
         printf("%d", numReal[i]);
